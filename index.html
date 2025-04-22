@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Digital - Práctica</title>
+    <style>
+        :root {
+            --color-primary: #3498db;
+            --color-secondary: #2ecc71;
+            --color-dark: #2c3e50;
+            --color-light: #ecf0f1;
+            --color-accent: #e74c3c;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                transparent,
+                transparent 20px,
+                rgba(255, 255, 255, 0.05) 20px,
+                rgba(255, 255, 255, 0.05) 40px
+            );
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+        
+        nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--color-light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+        
+        .about {
+            padding: 5rem 0;
+            background-color: var(--color-dark);
+            color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonials {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--color-light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+        }
+        
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+            color: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-family: var(--font-main);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background-color: var(--color-dark);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        
+        footer {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .social-links li {
+            margin: 0 1rem;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--color-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Next Digital</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#features">Servicios</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="hero" id="inicio">
+                <h1>Transformando ideas en soluciones digitales</h1>
+                <p>Somos una agencia digital especializada en desarrollo web, marketing digital y diseño UX/UI.</p>
+                <a href="#contact" class="btn">Comienza tu proyecto</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Nuestros Servicios</h2>
+            <div class="features-grid">
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desarrollo Web</h3>
+                    <p>Creamos sitios web a medida con las últimas tecnologías y frameworks como Next.js, React y Node.js.</p>
+                </div>
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Diseño Responsive</h3>
+                    <p>Diseñamos interfaces que se adaptan perfectamente a todos los dispositivos y tamaños de pantalla.</p>
+                </div>
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimizado</h3>
+                    <p>Mejoramos la visibilidad de tu sitio web en los motores de búsqueda para atraer más tráfico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Con más de 10 años de experiencia en el sector digital, nos hemos especializado en ofrecer soluciones tecnológicas innovadoras para empresas de todos los tamaños.</p>
+                    <p>Nuestro equipo está formado por profesionales apasionados por la tecnología y el diseño, comprometidos con la excelencia y la satisfacción del cliente.</p>
+                    <p>Trabajamos con metodologías ágiles que nos permiten adaptarnos rápidamente a las necesidades cambiantes del mercado y entregar proyectos de alta calidad en tiempo récord.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Equipo Next Digital">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Lo que dicen nuestros clientes</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "El equipo de Next Digital transformó por completo nuestra presencia online. Nuestro sitio web ahora refleja perfectamente nuestra marca y ha aumentado significativamente nuestras conversiones."
+                    </div>
+                    <div class="testimonial-author">María López, CEO de InnoTech</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "La profesionalidad y dedicación del equipo es impresionante. Siempre están dispuestos a ir más allá para asegurar que el proyecto cumpla con todas nuestras expectativas."
+                    </div>
+                    <div class="testimonial-author">Carlos Ruiz, Director de Marketing en GlobalSoft</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Desde que implementamos las estrategias SEO propuestas por Next Digital, hemos visto un incremento del 200% en nuestro tráfico orgánico. Totalmente recomendados."
+                    </div>
+                    <div class="testimonial-author">Ana Martínez, Fundadora de EcoStyle</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Contacta con nosotros</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Asunto">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Tu mensaje" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-submit">Enviar mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">Next Digital</div>
+            <ul class="social-links">
+                <li><a href="#" class="social-icon"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+            <p>&copy; 2025 Next Digital. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animación al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate');
+            
+            function checkIfInView() {
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Establecer estilos iniciales
+            animateElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.6s ease';
+            });
+            
+            // Comprobar elementos visibles al cargar
+            checkIfInView();
+            
+            // Comprobar elementos visibles al hacer scroll
+            window.addEventListener('scroll', checkIfInView);
+        });
+        
+        // Smooth scrolling para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
